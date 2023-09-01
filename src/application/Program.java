@@ -34,10 +34,23 @@ public class Program {
 			employees.add(new Employee(id,name,salary));
 			
 		}
+		
+		System.out.println("Enter the employee id that will have salary increase: ");
+		int searchId = sc.nextInt();
+		
+		Employee emp = employees.stream().filter(x -> x.getId() == searchId).findFirst().orElse(null);
+		
+		if(emp == null) {
+			System.out.println("This is does not exist!");
+		}else {
+			System.out.print("Enter the percentage: ");
+			Double percentage = sc.nextDouble();
+			emp.increaseSalary(percentage);
+		}
 		System.out.println();
-		for(Employee x: employees) {
-			System.out.printf("ID: %d%nName: %s%nSalary: %.2f%n", x.getId(), x.getName(), x.getSalary());
-			System.out.println();
+		System.out.println("List of employees: ");
+		for(Employee ep : employees) {
+			System.out.println(ep);
 		}
 		
 		sc.close();
